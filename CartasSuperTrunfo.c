@@ -1,6 +1,7 @@
 #include <stdio.h>
 
-int main() {
+int main(){
+printf("Super Trunfo!\n");
     // Carta 1 - Fortaleza, CE
     char estado1 = 'C'; // Ceará
     char codigo1[] = "A01";
