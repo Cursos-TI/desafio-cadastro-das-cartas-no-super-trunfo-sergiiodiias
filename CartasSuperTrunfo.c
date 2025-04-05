@@ -20,7 +20,7 @@ int main() {
     int pontosTuristicos2 = 18;
 
     // Exibição da Carta 1
-    printf("📇 === Carta 1 ===\n");
+    printf(" === Carta 1 ===\n");
     printf("Estado: %c (Ceará)\n", estado1);
     printf("Código da Carta: %s\n", codigo1);
     printf("Nome da Cidade: %s\n", cidade1);
@@ -30,7 +30,7 @@ int main() {
     printf("Número de Pontos Turísticos: %d\n", pontosTuristicos1);
 
     // Exibição da Carta 2
-    printf("\n📇 === Carta 2 ===\n");
+    printf("\n === Carta 2 ===\n");
     printf("Estado: %c (Bahia)\n", estado2);
     printf("Código da Carta: %s\n", codigo2);
     printf("Nome da Cidade: %s\n", cidade2);
