@@ -1,45 +1,43 @@
 #include <stdio.h>
 
 int main() {
-    // Carta 1 - Cidade: Tóquio, Japão
-    char estado1 = 'A';
+    // Carta 1 - Fortaleza, CE
+    char estado1 = 'C'; // Ceará
     char codigo1[] = "A01";
-    char pais1[] = "Japão";
-    char cidade1[] = "Tóquio";
-    int populacao1 = 13960000;
-    float area1 = 2194.07;
-    float pib1 = 1650.50;
-    int pontosTuristicos1 = 70;
+    char cidade1[] = "Fortaleza";
+    int populacao1 = 2687000;
+    float area1 = 314.93;
+    float pib1 = 61000000.0;
+    int pontosTuristicos1 = 12;
 
-    // Carta 2 - Cidade: Paris, França
-    char estado2 = 'B';
+    // Carta 2 - Salvador, BA
+    char estado2 = 'D'; // Bahia
     char codigo2[] = "B02";
-    char pais2[] = "França";
-    char cidade2[] = "Paris";
-    int populacao2 = 11020000;
-    float area2 = 105.40;
-    float pib2 = 850.75;
-    int pontosTuristicos2 = 95;
+    char cidade2[] = "Salvador";
+    int populacao2 = 2900000;
+    float area2 = 693.28;
+    float pib2 = 82000000.0;
+    int pontosTuristicos2 = 18;
 
     // Exibição da Carta 1
-    printf("\n === Carta 1 ===\n");
-    printf("Código: %s\n", codigo1);
-    printf("País: %s\n", pais1);
-    printf("Cidade: %s\n", cidade1);
-    printf("População: %d habitantes\n", populacao1);
+    printf("📇 === Carta 1 ===\n");
+    printf("Estado: %c (Ceará)\n", estado1);
+    printf("Código da Carta: %s\n", codigo1);
+    printf("Nome da Cidade: %s\n", cidade1);
+    printf("População: %d\n", populacao1);
     printf("Área: %.2f km²\n", area1);
-    printf("PIB: %.2f bilhões de dólares\n", pib1);
-    printf("Pontos Turísticos: %d\n", pontosTuristicos1);
+    printf("PIB: %.2f reais\n", pib1);
+    printf("Número de Pontos Turísticos: %d\n", pontosTuristicos1);
 
     // Exibição da Carta 2
-    printf("\n === Carta 2 ===\n");
-    printf("Código: %s\n", codigo2);
-    printf("País: %s\n", pais2);
-    printf("Cidade: %s\n", cidade2);
-    printf("População: %d habitantes\n", populacao2);
+    printf("\n📇 === Carta 2 ===\n");
+    printf("Estado: %c (Bahia)\n", estado2);
+    printf("Código da Carta: %s\n", codigo2);
+    printf("Nome da Cidade: %s\n", cidade2);
+    printf("População: %d\n", populacao2);
     printf("Área: %.2f km²\n", area2);
-    printf("PIB: %.2f bilhões de dólares\n", pib2);
-    printf("Pontos Turísticos: %d\n", pontosTuristicos2);
+    printf("PIB: %.2f reais\n", pib2);
+    printf("Número de Pontos Turísticos: %d\n", pontosTuristicos2);
 
     return 0;
 }
