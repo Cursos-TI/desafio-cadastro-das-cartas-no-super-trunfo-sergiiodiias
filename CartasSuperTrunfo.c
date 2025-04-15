@@ -1,44 +1,61 @@
+// Desafio: Comparação de cartas Super Trunfo (População)
+
 #include <stdio.h>
 
-int main(){
-printf("Super Trunfo!\n");
-    // Carta 1 - Fortaleza, CE
-    char estado1 = 'C'; // Ceará
-    char codigo1[] = "A01";
-    char cidade1[] = "Fortaleza";
-    int populacao1 = 2687000;
-    float area1 = 314.93;
-    float pib1 = 61000000.0;
-    int pontosTuristicos1 = 12;
+typedef struct {
+    char  estado[3];
+    char  codigo[4];
+    char  cidade[40];
+    int   populacao;
+    float area;
+    float pib;            // em milhões de R$
+    int   pontos_turisticos;
+    float densidade;       // hab/km²
+    float pib_per_capita;  // R$ por habitante
+} Carta;
 
-    // Carta 2 - Salvador, BA
-    char estado2 = 'D'; // Bahia
-    char codigo2[] = "B02";
-    char cidade2[] = "Salvador";
-    int populacao2 = 2900000;
-    float area2 = 693.28;
-    float pib2 = 82000000.0;
-    int pontosTuristicos2 = 18;
+void calcularAtributos(Carta *c) {
+    c->densidade      = c->populacao / c->area;
+    c->pib_per_capita = c->pib * 1e6f / c->populacao;
+}
 
-    // Exibição da Carta 1
-    printf(" === Carta 1 ===\n");
-    printf("Estado: %c (Ceará)\n", estado1);
-    printf("Código da Carta: %s\n", codigo1);
-    printf("Nome da Cidade: %s\n", cidade1);
-    printf("População: %d\n", populacao1);
-    printf("Área: %.2f km²\n", area1);
-    printf("PIB: %.2f reais\n", pib1);
-    printf("Número de Pontos Turísticos: %d\n", pontosTuristicos1);
+void exibirCarta(const Carta *c, int idx) {
+    printf("\nCarta %d\n", idx);
+    printf("Estado: %s\n", c->estado);
+    printf("Código: %s\n", c->codigo);
+    printf("Cidade: %s\n", c->cidade);
+    printf("População: %d\n", c->populacao);
+    printf("Área: %.2f km²\n", c->area);
+    printf("PIB: %.2f milhões de R$\n", c->pib);
+    printf("Pontos turísticos: %d\n", c->pontos_turisticos);
+    printf("Densidade: %.1f hab/km²\n", c->densidade);
+    printf("PIB per capita: R$ %.2f\n", c->pib_per_capita);
+}
 
-    // Exibição da Carta 2
-    printf("\n === Carta 2 ===\n");
-    printf("Estado: %c (Bahia)\n", estado2);
-    printf("Código da Carta: %s\n", codigo2);
-    printf("Nome da Cidade: %s\n", cidade2);
-    printf("População: %d\n", populacao2);
-    printf("Área: %.2f km²\n", area2);
-    printf("PIB: %.2f reais\n", pib2);
-    printf("Número de Pontos Turísticos: %d\n", pontosTuristicos2);
+void compararCartas(const Carta *c1, const Carta *c2) {
+    printf("\nComparação (População)\n");
+    printf("%s: %d\n", c1->cidade, c1->populacao);
+    printf("%s: %d\n\n", c2->cidade, c2->populacao);
+
+    if (c1->populacao > c2->populacao)
+        printf("Vencedora: %s\n", c1->cidade);
+    else if (c2->populacao > c1->populacao)
+        printf("Vencedora: %s\n", c2->cidade);
+    else
+        printf("Empate\n");
+}
+
+int main(void) {
+    Carta carta1 = { "CE", "A01", "Fortaleza", 2687000, 314.93f, 61.0f, 12 };
+    Carta carta2 = { "BA", "B02", "Salvador", 2900000, 693.28f, 82.0f, 18 };
+
+    calcularAtributos(&carta1);
+    calcularAtributos(&carta2);
+
+    exibirCarta(&carta1, 1);
+    exibirCarta(&carta2, 2);
+
+    compararCartas(&carta1, &carta2);
 
     return 0;
 }
