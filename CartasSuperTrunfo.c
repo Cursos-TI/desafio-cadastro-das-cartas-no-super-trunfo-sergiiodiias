@@ -1,61 +1,78 @@
-// Desafio: Comparação de cartas Super Trunfo (População)
-
 #include <stdio.h>
 
+#define MAX_CIDADES 2
+
+// Estrutura para armazenar os dados da carta
 typedef struct {
-    char  estado[3];
-    char  codigo[4];
-    char  cidade[40];
-    int   populacao;
-    float area;
-    float pib;            // em milhões de R$
-    int   pontos_turisticos;
-    float densidade;       // hab/km²
-    float pib_per_capita;  // R$ por habitante
+    char estado;
+    char codigo[5]; // Código da carta (ex: A01, B03)
+    char nome_cidade[100]; // Nome da cidade
+    int populacao; // População da cidade
+    float area; // Área da cidade em km²
+    float pib; // PIB da cidade
+    int pontos_turisticos; // Número de pontos turísticos
 } Carta;
 
-void calcularAtributos(Carta *c) {
-    c->densidade      = c->populacao / c->area;
-    c->pib_per_capita = c->pib * 1e6f / c->populacao;
+// Função para comparar as cartas com base no PIB
+void comparar_cartas(Carta carta1, Carta carta2) {
+    // Comparação baseada no PIB
+    if (carta1.pib > carta2.pib) {
+        printf("Carta 1 - %s venceu! PIB: %.2f bilhões de reais\n", carta1.nome_cidade, carta1.pib);
+    } else if (carta1.pib < carta2.pib) {
+        printf("Carta 2 - %s venceu! PIB: %.2f bilhões de reais\n", carta2.nome_cidade, carta2.pib);
+    } else {
+        printf("Empate! PIB: %.2f bilhões de reais\n", carta1.pib);
+    }
 }
 
-void exibirCarta(const Carta *c, int idx) {
-    printf("\nCarta %d\n", idx);
-    printf("Estado: %s\n", c->estado);
-    printf("Código: %s\n", c->codigo);
-    printf("Cidade: %s\n", c->cidade);
-    printf("População: %d\n", c->populacao);
-    printf("Área: %.2f km²\n", c->area);
-    printf("PIB: %.2f milhões de R$\n", c->pib);
-    printf("Pontos turísticos: %d\n", c->pontos_turisticos);
-    printf("Densidade: %.1f hab/km²\n", c->densidade);
-    printf("PIB per capita: R$ %.2f\n", c->pib_per_capita);
-}
+int main() {
+    Carta cartas[MAX_CIDADES]; // Vetor para armazenar as cartas
+    int i;
 
-void compararCartas(const Carta *c1, const Carta *c2) {
-    printf("\nComparação (População)\n");
-    printf("%s: %d\n", c1->cidade, c1->populacao);
-    printf("%s: %d\n\n", c2->cidade, c2->populacao);
+    // Loop para cadastrar as cartas
+    for (i = 0; i < MAX_CIDADES; i++) {
+        printf("Digite os dados da Carta %d:\n", i + 1);
+        
+        // Coleta dos dados para cada carta
+        printf("Estado (A a H): ");
+        scanf(" %c", &cartas[i].estado); // O espaço antes de %c é para consumir o '\n' deixado pelo Enter
+        
+        printf("Código da Carta (ex: A01): ");
+        scanf("%s", cartas[i].codigo);
+        
+        printf("Nome da Cidade: ");
+        scanf(" %[^\n]", cartas[i].nome_cidade); // Lê a linha inteira, permitindo espaços
+        
+        printf("População: ");
+        scanf("%d", &cartas[i].populacao);
+        
+        printf("Área (em km²): ");
+        scanf("%f", &cartas[i].area);
+        
+        printf("PIB (em bilhões de reais): ");
+        scanf("%f", &cartas[i].pib);
+        
+        printf("Número de Pontos Turísticos: ");
+        scanf("%d", &cartas[i].pontos_turisticos);
+        
+        printf("\n"); // Linha em branco para separar as cartas
+    }
 
-    if (c1->populacao > c2->populacao)
-        printf("Vencedora: %s\n", c1->cidade);
-    else if (c2->populacao > c1->populacao)
-        printf("Vencedora: %s\n", c2->cidade);
-    else
-        printf("Empate\n");
-}
+    // Exibindo as informações das cartas cadastradas
+    for (i = 0; i < MAX_CIDADES; i++) {
+        printf("Carta %d:\n", i + 1);
+        printf("Estado: %c\n", cartas[i].estado);
+        printf("Código: %s\n", cartas[i].codigo);
+        printf("Nome da Cidade: %s\n", cartas[i].nome_cidade);
+        printf("População: %d\n", cartas[i].populacao);
+        printf("Área: %.2f km²\n", cartas[i].area);
+        printf("PIB: %.2f bilhões de reais\n", cartas[i].pib);
+        printf("Número de Pontos Turísticos: %d\n", cartas[i].pontos_turisticos);
+        printf("\n"); // Linha em branco para separar as cartas
+    }
 
-int main(void) {
-    Carta carta1 = { "CE", "A01", "Fortaleza", 2687000, 314.93f, 61.0f, 12 };
-    Carta carta2 = { "BA", "B02", "Salvador", 2900000, 693.28f, 82.0f, 18 };
-
-    calcularAtributos(&carta1);
-    calcularAtributos(&carta2);
-
-    exibirCarta(&carta1, 1);
-    exibirCarta(&carta2, 2);
-
-    compararCartas(&carta1, &carta2);
+    // Comparando as cartas com base no PIB
+    comparar_cartas(cartas[0], cartas[1]);
 
     return 0;
 }
